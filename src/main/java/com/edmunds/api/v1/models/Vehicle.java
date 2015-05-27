@@ -2,7 +2,7 @@
  * @author Yan
  * @Date 2015-05-25
  * 
- * This bean class is used to save the vehicle Response Data 
+ * This bean class is used to save the vehicle ApiResponse Data 
  * as well as the http response from the Edmunds API.
  */
 
