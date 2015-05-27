@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Vehicle {
+    String vin;
     String make;
     String model;
     String year;
@@ -21,6 +22,7 @@ public class Vehicle {
     String summary;
     Mileage MPG;
     String engineType;
+    String apiKey;
     Map<ResponseType, HttpResponse> responses;
     Calendar createdData;
 
@@ -106,6 +108,22 @@ public class Vehicle {
 
     public void setCreatedData(Calendar createdData) {
 	this.createdData = createdData;
+    }
+
+    public String getVin() {
+	return vin;
+    }
+
+    public void setVin(String vin) {
+	this.vin = vin;
+    }
+
+    public String getApiKey() {
+	return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+	this.apiKey = apiKey;
     }
 
 }

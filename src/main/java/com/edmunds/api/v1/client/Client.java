@@ -196,6 +196,8 @@ public class Client {
      */
     public Vehicle generateVehicleDetails(String vin) throws Exception {
 	Vehicle vehicle = new Vehicle();
+	vehicle.setVin(vin);
+	vehicle.setApiKey(apiKey);
 
 	HttpResponse vehicle_details_response = getFullVehicleDetailsByVIN(vin);
 
@@ -286,14 +288,19 @@ public class Client {
 		    + vehicle.getAverageCustomerRating() + "'");
 
 	} catch (Exception e) {
-	    System.out.println(e.getMessage());
+	    // release vehicle object
+	    vehicle = null;
+	    
+	    String errMsg = e.toString();
+	    System.out.println("Error occured: " + errMsg);
 
-	    if (e.getMessage().contains("403")) {
+	    if (errMsg.contains("403")) {
 		throw new InvalidKeyException(
 			"The API key is not valid. Please check.");
-	    } else if (e.getMessage().contains("400")) {
-		throw new VehicleNotFoundException(
-			"Vehicle is not found. Please check VIN.");
+	    } else if (errMsg.contains("400") || errMsg.contains("404")
+		    || errMsg.contains("NotFound")
+		    || e instanceof java.io.FileNotFoundException) {
+		throw new VehicleNotFoundException("Vehicle is not found.");
 	    } else {
 		throw new InternalException(
 			"Internal error occured. Please try again later.");
