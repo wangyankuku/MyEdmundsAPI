@@ -8,6 +8,7 @@
 
 package com.edmunds.api.v1.models;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class Vehicle {
     Mileage MPG;
     String engineType;
     Map<ResponseType, HttpResponse> responses;
+    Calendar createdData;
 
     public Vehicle() {
 	responses = new HashMap<ResponseType, HttpResponse>();
@@ -96,6 +98,14 @@ public class Vehicle {
 
     public void setSubmodel(String submodel) {
 	this.submodel = submodel;
+    }
+
+    public Calendar getCreatedData() {
+	return createdData;
+    }
+
+    public void setCreatedData(Calendar createdData) {
+	this.createdData = createdData;
     }
 
 }
