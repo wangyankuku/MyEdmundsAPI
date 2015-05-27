@@ -16,6 +16,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.edmunds.api.v1.exceptions.InternalException;
+import com.edmunds.api.v1.exceptions.InvalidKeyException;
+import com.edmunds.api.v1.exceptions.VehicleNotFoundException;
 import com.edmunds.api.v1.models.HttpResponse;
 import com.edmunds.api.v1.models.Mileage;
 import com.edmunds.api.v1.models.ResponseType;
@@ -23,6 +26,13 @@ import com.edmunds.api.v1.models.Vehicle;
 import com.edmunds.api.v1.parser.Parser;
 
 public class Client {
+
+    String apiKey;
+
+    public Client(String apiKey) {
+	this.apiKey = apiKey;
+    }
+
     /**
      * This method is used to get the vehicle details data including make,
      * model, year and a lot of other very useful data.
@@ -48,7 +58,7 @@ public class Client {
 
 	// add apiKey parameter
 	sb.append(URLEncoder.encode("api_key", "UTF-8")).append("=")
-		.append(URLEncoder.encode(Constants.API_KAY, "UTF-8"));
+		.append(URLEncoder.encode(this.apiKey, "UTF-8"));
 
 	return getResponseFromURL(sb.toString(), ResponseType.CUSTOMER_RATING);
 
@@ -91,7 +101,7 @@ public class Client {
 
 	// add apiKey parameter
 	sb.append(URLEncoder.encode("api_key", "UTF-8")).append("=")
-		.append(URLEncoder.encode(Constants.API_KAY, "UTF-8"));
+		.append(URLEncoder.encode(this.apiKey, "UTF-8"));
 
 	return getResponseFromURL(sb.toString(), ResponseType.EDMUNDS_RATING);
 
@@ -132,7 +142,7 @@ public class Client {
 
 	// add apiKey parameter
 	sb.append(URLEncoder.encode("api_key", "UTF-8")).append("=")
-		.append(URLEncoder.encode(Constants.API_KAY, "UTF-8"));
+		.append(URLEncoder.encode(this.apiKey, "UTF-8"));
 
 	return getResponseFromURL(sb.toString(), ResponseType.CUSTOMER_RATING);
     }
@@ -249,7 +259,7 @@ public class Client {
      * @param vin
      * @return Vehicle
      */
-    public Vehicle generateVehicleData(String vin) throws Exception {
+    public Vehicle generateVehicleData(String vin) throws RuntimeException {
 	Vehicle vehicle = null;
 
 	try {
@@ -274,9 +284,19 @@ public class Client {
 		    + vehicle.getAverageCustomerRating() + "'");
 
 	} catch (Exception e) {
-	    throw new Exception(
-		    "Error occured when generating the vehicle data. \n"
-			    + e.getMessage());
+	    System.out.println(e.getMessage());
+
+	    if (e.getMessage().contains("403")) {
+		throw new InvalidKeyException(
+			"The API key is not valid. Please check.");
+	    } else if (e.getMessage().contains("400")) {
+		throw new VehicleNotFoundException(
+			"Vehicle is not found. Please check VIN.");
+	    } else {
+		throw new InternalException(
+			"Internal error occured. Please try again later.");
+	    }
+
 	}
 
 	return vehicle;
