@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Calendar;
 
 import com.edmunds.api.v1.exceptions.InternalException;
 import com.edmunds.api.v1.exceptions.InvalidKeyException;
@@ -218,6 +219,7 @@ public class Client {
 		VehicleDataPath.YEAR_PATH));
 	vehicle.setSubmodel(Parser.parser(vehicle_details_response,
 		VehicleDataPath.SUBMODEL_PATH));
+	vehicle.setCreatedData(Calendar.getInstance());
 
 	return vehicle;
     }
