@@ -1,3 +1,11 @@
+/**
+ * @author Yan
+ * @Date 2015-05-25
+ * 
+ * The ApiResource class defines the path, parameters and 
+ * provides the interface that handles the request.
+ */
+
 package com.edmunds.api.v1.resources;
 
 import javax.ws.rs.BeanParam;
@@ -17,8 +25,23 @@ import com.edmunds.api.v1.service.ApiService;
 
 @Path("/vin")
 public class ApiResource {
-
+    // create the request handler
     ApiService service = new ApiService();
+
+    /**
+     * This method grabs the path parameters and header parameters from the
+     * request. It checks the existence of the api key, and then call the
+     * service to process this request.
+     *
+     * @param headers
+     *            The bean that contains all the header parameters, which should
+     *            contain the api key.
+     *
+     * @param vin
+     *            Vehicle's vin from the path parameters.
+     *
+     * @return The Vehicle data in the cache or from the remote API.
+     */
 
     @GET
     @Path("/{vin}")

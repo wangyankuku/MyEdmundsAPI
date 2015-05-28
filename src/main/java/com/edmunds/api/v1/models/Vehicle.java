@@ -3,7 +3,7 @@
  * @Date 2015-05-25
  * 
  * This bean class is used to save the vehicle ApiResponse Data 
- * as well as the http response from the Edmunds API.
+ * as well as the http response from the Edmunds API for future use.
  */
 
 package com.edmunds.api.v1.models;

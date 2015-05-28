@@ -1,3 +1,11 @@
+/**
+ * @author Yan
+ * @Date 2015-05-26
+ * 
+ * This bean class is used to save the Response Data 
+ * that will be sent back to the user of this API.
+ */
+
 package com.edmunds.api.v1.models;
 
 public class ApiResponse {
@@ -33,6 +41,10 @@ public class ApiResponse {
 	this.summary = vehicle.getSummary();
 	this.MPG = vehicle.getMPG();
 	this.engineType = vehicle.getEngineType();
+	this.make = vehicle.getMake();
+	this.model = vehicle.getModel();
+	this.subModel = vehicle.getSubmodel();
+	this.year = vehicle.getYear();
     }
 
     public double getAverageCustomerRating() {

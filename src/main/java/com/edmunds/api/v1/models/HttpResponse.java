@@ -2,7 +2,8 @@
  * @author Yan
  * @Date 2015-05-25
  * 
- * This bean class is used to save the Http ApiResponse Data.
+ * This bean class is used to save the 
+ * Response Data from Edmunds API.
  */
 
 package com.edmunds.api.v1.models;
