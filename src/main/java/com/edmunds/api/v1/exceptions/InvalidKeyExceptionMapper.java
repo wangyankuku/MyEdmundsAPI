@@ -1,3 +1,11 @@
+/**
+ * @author Yan
+ * @Date 2015-05-27
+ * 
+ * This mapper class give the InvalidKeyException 
+ * with specific message
+ */
+
 package com.edmunds.api.v1.exceptions;
 
 import javax.ws.rs.core.Response;
