@@ -1,6 +1,10 @@
 package com.edmunds.api.v1.models;
 
 public class ApiResponse {
+    String make;
+    String model;
+    String subModel;
+    String year;
     double averageCustomerRating;
     String summary;
     Mileage MPG;
@@ -10,9 +14,14 @@ public class ApiResponse {
 
     }
 
-    public ApiResponse(double averageCustomerRating, String summary, Mileage mPG,
+    public ApiResponse(String make, String model, String subModel, String year,
+	    double averageCustomerRating, String summary, Mileage mPG,
 	    String engineType) {
 	super();
+	this.make = make;
+	this.model = model;
+	this.subModel = subModel;
+	this.year = year;
 	this.averageCustomerRating = averageCustomerRating;
 	this.summary = summary;
 	MPG = mPG;
@@ -56,6 +65,38 @@ public class ApiResponse {
 
     public void setEngineType(String engineType) {
 	this.engineType = engineType;
+    }
+
+    public String getMake() {
+	return make;
+    }
+
+    public void setMake(String make) {
+	this.make = make;
+    }
+
+    public String getModel() {
+	return model;
+    }
+
+    public void setModel(String model) {
+	this.model = model;
+    }
+
+    public String getSubModel() {
+	return subModel;
+    }
+
+    public void setSubModel(String subModel) {
+	this.subModel = subModel;
+    }
+
+    public String getYear() {
+	return year;
+    }
+
+    public void setYear(String year) {
+	this.year = year;
     }
 
 }
