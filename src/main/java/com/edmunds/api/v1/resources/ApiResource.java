@@ -10,6 +10,7 @@ package com.edmunds.api.v1.resources;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -46,7 +47,7 @@ public class ApiResource {
     @GET
     @Path("/{vin}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getVehicleData(@BeanParam HeaderParams headers,
+    public Response getVehicleData(@HeaderParam("headers") HeaderParams headers,
 	    @PathParam("vin") String vin) {
 
 	Vehicle vehicle = null;
