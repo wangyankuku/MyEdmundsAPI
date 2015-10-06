@@ -1,6 +1,6 @@
 # software-architecture
 
-Take-home assignment for Edmunds.com Software Architecture engineering candidates
+Edmunds.com Software Architecture
 
 ## Before you start
 
